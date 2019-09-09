@@ -5,11 +5,17 @@
  * which makes it higher in priority.
  */
 
-.wp-block-cgb-block-gutenberg-repeater-field  {
-  background: $green;
-  border: 0.2rem solid $black;
-  color: $black;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem;
+.advanced-maps-block {
+    
+    &__marker-address {
+        float: left;
+        width: calc(100% - 40px);
+    }
+    
+    &__remove-marker-address {
+        float: left;
+        margin-left: 10px;
+        margin-top: 1px;
+        padding: 5px 5px 4px;
+    }
 }
