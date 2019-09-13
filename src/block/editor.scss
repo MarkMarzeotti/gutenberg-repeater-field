@@ -5,14 +5,14 @@
  * which makes it higher in priority.
  */
 
-.advanced-maps-block {
-    
-    &__marker-address {
+.grf {
+
+    &__location-address {
         float: left;
         width: calc(100% - 40px);
     }
-    
-    &__remove-marker-address {
+
+    &__remove-location-address {
         float: left;
         margin-left: 10px;
         margin-top: 1px;

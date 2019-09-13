@@ -1,5 +1,5 @@
 /**
- * BLOCK: gutenberg-repeater-field
+ * BLOCK: Gutenberg Repeater Field
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -41,8 +41,8 @@ const {
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/block-gutenberg-repeater-field', {
-	title: __( 'gutenberg-repeater-field - CGB Block' ),
+registerBlockType( 'grf/gutenberg-repeater-field', {
+	title: __( 'Gutenberg Repeater Field' ),
 	icon: 'shield',
 	category: 'common',
 	attributes: {
@@ -52,9 +52,9 @@ registerBlockType( 'cgb/block-gutenberg-repeater-field', {
 		},
 	},
 	keywords: [
-		__( 'gutenberg-repeater-field — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'Gutenberg Repeater Field' ),
+		__( 'Repeatable' ),
+		__( 'ACF' ),
 	],
 	edit: ( props ) => {
 		const handleAddLocation = () => {
@@ -77,28 +77,28 @@ registerBlockType( 'cgb/block-gutenberg-repeater-field', {
 			props.setAttributes( { locations } );
 		};
 
-		let markerFields,
-			markerDisplay;
+		let locationFields,
+			locationDisplay;
 
 		if ( props.attributes.locations.length ) {
-			markerFields = props.attributes.locations.map( ( location, index ) => {
+			locationFields = props.attributes.locations.map( ( location, index ) => {
 				return <Fragment key={ index }>
 					<TextControl
-						className="advanced-maps-block__marker-address"
+						className="grf__location-address"
 						placeholder="350 Fifth Avenue New York NY"
 						value={ props.attributes.locations[ index ].address }
 						onChange={ ( address ) => handleLocationChange( address, index ) }
 					/>
 					<IconButton
-						className="advanced-maps-block__remove-marker-address"
+						className="grf__remove-location-address"
 						icon="no-alt"
-						label="Delete Marker"
+						label="Delete location"
 						onClick={ () => handleRemoveLocation( index ) }
 					/>
 				</Fragment>;
 			} );
 
-			markerDisplay = props.attributes.locations.map( ( location, index ) => {
+			locationDisplay = props.attributes.locations.map( ( location, index ) => {
 				return <p key={ index }>{ location.address }</p>;
 			} );
 		}
@@ -106,30 +106,30 @@ registerBlockType( 'cgb/block-gutenberg-repeater-field', {
 		return [
 			<InspectorControls key="1">
 				<PanelBody title={ __( 'Locations' ) }>
-					{ markerFields }
+					{ locationFields }
 					<Button
 						isDefault
 						onClick={ handleAddLocation.bind( this ) }
 					>
-						{ __( 'Add Marker' ) }
+						{ __( 'Add Location' ) }
 					</Button>
 				</PanelBody>
 			</InspectorControls>,
 			<div key="2" className={ props.className }>
 				<h2>Block</h2>
-				{ markerDisplay }
+				{ locationDisplay }
 			</div>,
 		];
 	},
 	save: ( props ) => {
-		const markerFields = props.attributes.locations.map( ( location, index ) => {
+		const locationFields = props.attributes.locations.map( ( location, index ) => {
 			return <p key={ index }>{ location.address }</p>;
 		} );
 
 		return (
 			<div className={ props.className }>
 				<h2>Block</h2>
-				{ markerFields }
+				{ locationFields }
 			</div>
 		);
 	},
